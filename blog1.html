@@ -5,196 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Understanding C Programming</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             background-color: black;
             color: white;
-        }
-        .navbar-dark .navbar-nav .nav-link {
+          }
+          .navbar-dark .navbar-nav .nav-link {
             color: white;
-        }
-        .navbar-dark .navbar-brand {
+          }
+          .navbar-dark .navbar-nav .nav-link.active {
+            color: #6200ea;
+          }
+          .navbar-dark .navbar-brand {
             color: white;
-        }
-        .content {
+          }
+          .navbar-dark .navbar-brand:hover {
+            color: #6200ea;
+          }
+          .card-body {
             background-color: #212529;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .btn-warning {
-            background-color: #f8d210;
-            border-color: #f8d210;
-        }
-        .btn-warning:hover {
-            background-color: #e0c300;
-            border-color: #e0c300;
-        }
-        footer {
+          }
+          .card-title, .card-text {
+            color: white;
+          }
+          .card:hover {
+            background-color: #343a40;
+          }
+          .hero-section {
             background-color: #212529;
             color: white;
-            padding: 10px;
-            text-align: center;
-        }
+          }
+          footer {
+            background-color: #212529;
+            color: white;
+          }
+          footer a {
+            color: #f8d210;
+          }
+          footer a:hover {
+            color: #e0c300;
+          }
+          .btn-warning { background-color: #6200ea; border-color: #6200ea; }
+          .btn-warning:hover { background-color: #4a00c2; border-color: #4a00c2; }
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+          }
+        
+          .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #fff;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s;
+            color: white;
+            background: transparent;
+          }
+        
+          .social-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+          }
+        
+          .icon {
+            width: 22px;  /* Same size for all icons */
+            height: 22px;
+          }
+        
+          /* Liked state */
+          .liked {
+            background: red !important;
+            border-color: red !important;
+            color: white !important;
+          }
+        
+          /* Comment Section Styling */
+          .comment-section {
+            display: none;  /* Hidden by default */
+            margin-top: 10px;
+          }
+        
+          .comment-box {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: none;
+          }
+        
+          .post-comment {
+            margin-top: 5px;
+          }
+          body { background-color: black; color: white; }
+          .animated-logo { height: 50px; border-radius: 50%; transition: transform 0.3s; }
+          .animated-logo:hover { transform: scale(1.1) rotate(5deg); }
+          .fade-in { animation: fadeIn 1.5s ease-in-out forwards; }
+          .slide-up { animation: slideUp 1.5s ease-in-out forwards; }
+          .hover-effect:hover { background-color: rgba(98, 0, 234, 0.5); transition: 0.3s; }
+          .video-hover:hover { filter: brightness(1.2); transition: 0.3s; }
+          .dropdown-item:hover { color: black !important; background-color: #6200ea !important; }
+          .btn-primary { background-color: #6200ea; border-color: #6200ea; }
+          .btn-primary:hover { background-color: #4a00c2; border-color: #4a00c2; }
+          .navbar-dark .navbar-nav .nav-link { color: white; }
+          .navbar-dark .navbar-nav .nav-link:hover { color: #6200ea; }
+          .bg-dark { background-color: black !important; }
+          .floating-socials { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+          .social-icon { width: 40px; transition: 0.3s; }
+          .social-icon:hover { transform: scale(1.2); }
     </style>
-    <style>
-        body {
-          background-color: black;
-          color: white;
-        }
-        .navbar-dark .navbar-nav .nav-link {
-          color: white;
-        }
-        .navbar-dark .navbar-nav .nav-link.active {
-          color: #f8d210;
-        }
-        .navbar-dark .navbar-brand {
-          color: white;
-        }
-        .navbar-dark .navbar-brand:hover {
-          color: #f8d210;
-        }
-        .card-body {
-          background-color: #212529;
-        }
-        .card-title, .card-text {
-          color: white;
-        }
-        .card:hover {
-          background-color: #343a40;
-        }
-        .hero-section {
-          background-color: #212529;
-          color: white;
-        }
-        .btn-warning {
-          background-color: #f8d210;
-          border-color: #f8d210;
-        }
-        .btn-warning:hover {
-          background-color: #e0c300;
-          border-color: #e0c300;
-        }
-        footer {
-          background-color: #212529;
-          color: white;
-        }
-        footer a {
-          color: #f8d210;
-        }
-        footer a:hover {
-          color: #e0c300;
-        }
-      </style>
-      <style>
-        body{
-          background-color: black;
-        }
-        .animated-logo {
-          border-radius: 50%;
-          height: 50px;
-          margin-right: 10px;
-          transition: transform 0.3s ease-in-out;
-        }
-        .animated-logo:hover {
-          transform: scale(1.1) rotate(5deg);
-        }
-        .animated-text {
-          display: inline-block;
-          position: relative;
-          transition: color 0.3s ease-in-out;
-        }
-        .animated-text:hover {
-          color: #f8d210;
-        }
-        .list-group-item {
-          border-radius: 10px;
-          margin-bottom: 10px;
-        }
-        .hero-section {
-          animation: fadeIn 1.5s ease-in-out;
-        }
-        .fade-in {
-          opacity: 0;
-          animation: fadeIn 1.5s ease-in-out forwards;
-        }
-        .slide-up {
-          transform: translateY(20px);
-          opacity: 0;
-          animation: slideUp 1.5s ease-in-out forwards;
-        }
-        .hover-effect:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-          transition: background-color 0.3s ease-in-out;
-        }
-        .scale-hover:hover {
-          transform: scale(1.05);
-          transition: transform 0.3s ease-in-out;
-        }
-        .video-hover:hover {
-          filter: brightness(1.2);
-          transition: filter 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from { transform: translateY(20px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-      </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container-fluid d-flex align-items-center" style="gap: 30px;">
-          <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="unnamed.png" alt="Logo" class="animated-logo" />
-            <span class="fw-bold text-light animated-text">Kunal Bavdhane</span>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center" style="gap: 30px;">
-              <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="blogs.html">Blogs</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Videos</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="c-language.html">C-language</a></li>
-                  <li><a class="dropdown-item" href="java.html">Java</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="notes.html">Notes</a></li>
-                  <li><a class="dropdown-item" href="codes.html">Codes</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled text-secondary" aria-disabled="true">Counseling</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="Source/Icons and logo/unnamed.png" alt="Logo" class="animated-logo" />
+                <span class="fw-bold text-light animated-text">Kunal Bavdhane</span>
+            </a>
         </div>
-      </nav>
+    </nav>
 
-    <!-- Blog Content -->
     <div class="container my-5">
         <div class="content">
             <h1>Understanding C Programming</h1>
             <p class="text-muted">Published on February 5, 2025</p>
-            <img src="blog1.jpg" class="img-fluid rounded mb-4" alt="Blog Image" />
+            <img src="Source/blog/images/c programing.png" class="img-fluid rounded mb-4" alt="Blog Image" />
             <p>
                 C programming is one of the foundational languages in the field of computer science. It provides low-level access to memory, making it a powerful language for system programming.
-            </p>
-            <p>
-                In this article, we will explore the history of C, its key features, and why it remains one of the most widely used programming languages in the world.
             </p>
             <h3>Why Learn C?</h3>
             <p>
@@ -210,18 +151,63 @@ int main() {
     return 0;
 }
             </pre>
-            <p>
-                The above code prints "Hello, World!" to the screen, which is a classic beginner's program in C.
-            </p>
-            <a href="blogs.html" class="btn btn-warning mt-3">Back to Blogs</a>
+            <p>The above code prints "Hello, World!" to the screen, which is a classic beginner's program in C.</p>
+            <a href="blogs.html" class="btn btn-warning mt-3" style="color: white;">Back to Blogs</a>
+            
+            <div class="social-buttons">
+                <button class="btn btn-outline-light social-btn like-btn">
+                    <img src="Source/Icons and logo/like.png" alt="Like Icon" class="icon"> Like
+                </button>
+                <button class="btn btn-outline-light social-btn comment-btn">
+                    <img src="Source/Icons and logo/comment.png" alt="Comment Icon" class="icon"> Comment
+                </button>
+                <button class="btn btn-outline-light social-btn share-btn">
+                    <img src="Source/Icons and logo/share.png" alt="Share Icon" class="icon"> Share
+                </button>
+            </div>
+            
+            <!-- Comment Section (Initially Hidden) -->
+            <div class="comment-section">
+                <textarea class="comment-box" placeholder="Write a comment..."></textarea>
+                <button class="btn btn-primary btn-sm post-comment">Post</button>
+            </div>
+            
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Kunal Bavdhane. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+ // Like button functionality
+ document.querySelector('.like-btn').addEventListener('click', function() {
+    this.classList.toggle('liked');
+  });
+
+  // Comment button toggle functionality
+  document.querySelector('.comment-btn').addEventListener('click', function() {
+    let commentSection = document.querySelector('.comment-section');
+    commentSection.style.display = commentSection.style.display === 'none' || commentSection.style.display === '' ? 'block' : 'none';
+  });
+
+  // Share button functionality
+  document.querySelector('.share-btn').addEventListener('click', function() {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        text: "Check out this amazing content!",
+        url: window.location.href
+      }).then(() => {
+        alert("Shared successfully!");
+      }).catch((error) => {
+        console.error("Error sharing:", error);
+      });
+    } else {
+      alert("Sharing is not supported in this browser.");
+    }
+  });
+      </script>
 </body>
 </html>
