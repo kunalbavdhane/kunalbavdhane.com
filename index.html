@@ -19,6 +19,79 @@
       crossorigin="anonymous"
     />
     <style>
+      .blog-container {
+        max-height: 350px;
+        overflow-y: auto;
+        background-color: #111;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+    
+      /* Custom scrollbar */
+      .blog-container::-webkit-scrollbar {
+        width: 8px;
+      }
+    
+      .blog-container::-webkit-scrollbar-track {
+        background: #222;
+        border-radius: 10px;
+      }
+    
+      .blog-container::-webkit-scrollbar-thumb {
+        background: #444;
+        border-radius: 10px;
+      }
+    
+      .blog-container::-webkit-scrollbar-thumb:hover {
+        background: #666;
+      }
+    
+      /* Blog list styling */
+      .blog-item {
+        background: #000;
+        color: #fff;
+        border: 1px solid #444;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+    
+      /* Hover effect */
+      .blog-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      }
+    
+      /* Blog image styling */
+      .blog-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease-in-out;
+      }
+    
+      .blog-item:hover .blog-img {
+        transform: scale(1.03);
+      }
+    
+      /* Fade-in animation */
+      .fade-in {
+        animation: fadeIn 1s ease-in-out;
+      }
+    
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       body { background-color: black; color: white; }
       .animated-logo { height: 50px; border-radius: 50%; transition: transform 0.3s; }
       .animated-logo:hover { transform: scale(1.1) rotate(5deg); }
@@ -41,7 +114,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container-fluid d-flex align-items-center" style="gap: 30px;">
         <a class="navbar-brand d-flex align-items-center" href="#">
-          <img src="unnamed.png" alt="Logo" class="animated-logo" />
+          <img src="Source/Icons and logo/unnamed.png" alt="Logo" class="animated-logo" />
           <span class="fw-bold text-light animated-text" style="margin-left: 10px;">Kunal Bavdhane</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,17 +165,34 @@
         </div>
         <div class="col-md-6">
           <h2 class="text-light text-center fade-in">Recent Blogs</h2>
-          <ul class="list-group">
-            <li class="list-group-item bg-dark text-light border-light hover-effect">
-              <h5>Why C Should Be Your First Language</h5>
-              <p>C is one of the most widely used programming languages...</p>
-              <a href="blog1.html" class="btn btn-primary btn-sm scale-hover">Read More</a>
-            </li>
-          </ul>
+          <div class="blog-container">
+            <ul class="list-group">
+              <li class="list-group-item blog-item">
+                <img src="Source/blog/images/c programing.png" alt="Blog Image" class="blog-img">
+                <h5>Why C Should Be Your First Language</h5>
+                <p>C is one of the most widely used programming languages...</p>
+                <a href="blog1.html" class="btn btn-primary btn-sm scale-hover">Read More</a>
+              </li>
+              <li class="list-group-item blog-item">
+                <img src="blog2.jpg" alt="Blog Image" class="blog-img">
+                <h5>Understanding JavaScript Closures</h5>
+                <p>Closures are a fundamental concept in JavaScript...</p>
+                <a href="blog2.html" class="btn btn-primary btn-sm scale-hover">Read More</a>
+              </li>
+              <li class="list-group-item blog-item">
+                <img src="blog3.jpg" alt="Blog Image" class="blog-img">
+                <h5>Mastering Python for Data Science</h5>
+                <p>Python is the go-to language for data science...</p>
+                <a href="blog3.html" class="btn btn-primary btn-sm scale-hover">Read More</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        
+        
       </div>
     </div>
-    <div class="container my-5">
+    <!-- <div class="container my-5">
       <h2 class="text-center text-light">Featured Articles</h2>
       <div class="row">
         <div class="col-md-4">
@@ -116,7 +206,7 @@
           </div>
         </div>
       </div>
-    </div>   
+    </div>    -->
     <div class="container my-5">
       <h2 class="text-center text-light">What Our Users Say</h2>
       <div class="text-center">
@@ -144,9 +234,9 @@
       <p id="feedbackResponse" class="text-center mt-3"></p>
     </div> 
     <div class="floating-socials">
-      <a href="#"><img src="instagram.png" alt="Instagram" class="social-icon" /></a>
-      <a href="#"><img src="linkedin.png" alt="LinkedIn" class="social-icon" /></a>
-      <a href="#"><img src="youtube.png" alt="YouTube" class="social-icon" /></a>
+      <a href="https://www.instagram.com/kunalbavdhane99/"><img src="Source/Icons and logo/instagram.png" alt="Instagram" class="social-icon" /></a>
+      <a href="https://www.linkedin.com/in/kunal-bavdhane-44354032a"><img src="Source/Icons and logo/linkedin.png" alt="LinkedIn" class="social-icon" /></a>
+      <a href="#"><img src="Source/Icons and logo/youtube.png" alt="YouTube" class="social-icon" /></a>
     </div>
     <footer class="bg-dark text-light text-center py-3">
       <p>&copy; 2025 Kunal Bavdhane. All rights reserved.</p>
